@@ -1,0 +1,7 @@
+name: vinted_tracker
+dependencies:
+  flutter:
+    sdk: flutter
+flutter:
+  assets:
+    - assets/data.json
