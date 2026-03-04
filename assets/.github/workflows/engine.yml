@@ -1,0 +1,21 @@
+name: Vinted Engine
+on:
+  schedule:
+    - cron: '*/10 * * * *'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v4
+      - run: python scraper.py
+      - name: Save
+        run: |
+          git config --global user.name "Bot"
+          git config --global user.email "bot@github.com"
+          git add assets/data.json
+          git commit -m "New Drop" || exit 0
+          git push
